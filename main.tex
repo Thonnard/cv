@@ -1,0 +1,315 @@
+% FortySecondsCV LaTeX template
+% Copyright © 2019 René Wirnata <rene.wirnata@pandascience.net>
+% Licensed under the 3-Clause BSD License. See LICENSE file for details.
+%
+% Attributions
+% ------------
+% * fortysecondscv is based on the twentysecondcv class by Carmine Spagnuolo 
+%   (cspagnuolo@unisa.it), released under the MIT license and available under
+%   https://github.com/spagnuolocarmine/TwentySecondsCurriculumVitae-LaTex
+% * further attributions are indicated immediately before corresponding code
+
+
+%-------------------------------------------------------------------------------
+%                             ADDITIONAL PACKAGES
+%-------------------------------------------------------------------------------
+\documentclass[
+  a4paper, 
+%   showframes,
+%   vline=2.2em,
+%   maincolor=cvgreen,
+%   sectioncolor=red,
+%   subsectioncolor=orange,
+%   itemtextcolor=black!80,
+%   sidebarwidth=0.4\paperwidth,
+%   topbottommargin=0.03\paperheight,
+%   leftrightmargin=20pt,
+%   proilepicsize=4.5cm,
+]{fortysecondscv}
+
+% improve word spacing and hyphenation
+\usepackage{microtype}
+\usepackage{ragged2e}
+
+% take care of proper font encoding
+\ifxetexorluatex
+	\usepackage{fontspec}
+	\defaultfontfeatures{Ligatures=TeX}
+% \newfontfamily\headingfont[Path = fonts/]{segoeuib.ttf} % local font
+\else
+	\usepackage[utf8]{inputenc}
+	\usepackage[T1]{fontenc}
+% \usepackage[sfdefault]{noto} % use noto google font
+\fi
+
+% enable mathematical syntax for some symbols like \varnothing
+\usepackage{amssymb}
+
+% bubble diagram configuration
+\usepackage{smartdiagram}
+\smartdiagramset{
+  % defaut font size is \large, so adjust to harmonize with sidebar layout
+  bubble center node font = \footnotesize,
+  bubble node font = \footnotesize,
+  % default: 4cm/2.5cm; make minimum diameter relative to sidebar size
+  bubble center node size = 0.4\sidebartextwidth,
+  bubble node size = 0.25\sidebartextwidth,
+  distance center/other bubbles = 1.5em,
+  % set center bubble color
+  bubble center node color = maincolor!70,
+  % define the list of colors usable in the diagram
+  set color list = {maincolor!10, maincolor!40,
+  maincolor!20, maincolor!60, maincolor!35},
+  % sets the opacity at which the bubbles are shown
+  bubble fill opacity = 0.8,
+}
+
+% calculate my age
+\usepackage{datenumber, fp}
+\newcounter{birthday}
+\newcounter{today}
+\setmydatenumber{birthday}{1985}{07}{26}
+\setmydatenumber{today}{\the\year}{\the\month}{\the\day}
+\FPsub\result{\thetoday}{\thebirthday}
+\FPdiv\myage{\result}{365.2425}
+\FPround\myage{\myage}{0}
+
+
+%-------------------------------------------------------------------------------
+%                            PERSONAL INFORMATION
+%-------------------------------------------------------------------------------
+%% mandatory information
+% your name
+\cvname{David Thonnard}
+% job title/career
+\cvjobtitle{
+	\begin{tabular}{cc}
+		Neuroscientist \hspace{0.2cm}  & \includegraphics[align=c,scale=0.25]{pics/flags/BE_crop.png} \\
+	\end{tabular}
+}
+
+%% optional information
+% profile picture
+\cvprofilepic{pics/me.jpg}
+
+% NOTE: ordering in sidebar will mimic the following order
+% date of birth
+\cvbirthday{July 26, 1985 (\myage)}
+% short address/location, use \newline if more than 1 line is required
+\cvaddress{Leuven, Belgium}
+% phone number
+\cvphone{+32 498 07 56 51}
+% email address
+\cvmail{thonnard.david@gmail.com}
+% personal website
+\cvlinkedin{linkedin.com/in/Thonnard}
+\cvgithub{github.com/Thonnard/}
+% pgp key
+%\cvkey{4096R/FF00FF00}{0xAABBCCDDFF00FF00}
+% any other custom entry
+%\cvcustomdata{\faFlag}{Chinese}
+
+
+
+%-------------------------------------------------------------------------------
+%                              SIDEBAR 1st PAGE
+%-------------------------------------------------------------------------------
+% add more profile sections to sidebar on first page
+\addtofrontsidebar{
+	% include gosquare national flags from https://github.com/gosquared/flags;
+	% naming according to ISO 3166-1 alpha-2 country codes
+	\graphicspath{{pics/flags/}}
+	
+	\profilesection{About Me}
+	\aboutme{
+		I am a neuroscientist with a biomedical and psychological background. For the past 5 years I have been studying cognitive flexibility. More recently, I have gained interest in statistics and programming, which helps me to improve my data analyses.
+	}
+
+	\profilesection{Languages}
+		\pointskill{\flag{NL.png}}{Dutch}{5}
+		\pointskill{\flag{GB.png}}{English}{5}
+  		\pointskill{\flag{FR.png}}{French}{3}
+  		\pointskill{\flag{ES.png}}{Spanish}{2}
+  		\pointskill{\flag{DE.png}}{German}{1}
+
+	\profilesection{Hard Skills}
+		\chartlabel{\faFlask \hspace{0.15cm} Laboratory Skills}
+
+		\skill{\faCheckSquare}{Neurosurgical lesions}
+		\skill{\faCheckSquare}{Neurosurgical implantations}
+		\skill{\faCheckSquare}{IHC/nissl stainings}
+		\skill{\faCheckSquare}{Brain perfusion/extraction}
+		\skill{\faCheckSquare}{Injections (IP/SC/IM)}
+		\skill{\faCheckSquare}{Optogenetics}
+		\skill{\faCheckSquare}{Flowcytometry}
+
+}
+
+
+%-------------------------------------------------------------------------------
+%                              SIDEBAR 2nd PAGE
+%-------------------------------------------------------------------------------
+\addtobacksidebar{
+	
+	%\profilesection{Hard Skills}
+	%\vspace*{0.1cm}
+	\chartlabel{\faPaw \hspace{0.10cm} Behavioural Testing}
+	
+	\skill{\faCheckSquare}{Morris Water Maze}
+	\skill{\faCheckSquare}{T-Maze}
+	\skill{\faCheckSquare}{Rotarod}
+	\skill{\faCheckSquare}{Open Field}
+	\skill{\faCheckSquare}{Elevated Plus Maze}
+	\skill{\faCheckSquare}{Touchscreen visual discrimination}
+	\skill{\faCheckSquare}{Odor discrimination}
+	
+	\vspace*{0.3cm}
+	\chartlabel{\faDesktop \hspace{0.05cm} Computer Skills} 
+		
+	\skill{\faCheckSquare}{R scripting / programming}
+	\skill{\faCheckSquare}{SPSS}
+	\skill{\faCheckSquare}{Python}
+	\skill{\faCheckSquare}{Matlab}
+	\skill{\faCheckSquare}{C}
+	\skill{\faCheckSquare}{LaTeX}
+	\skill{\faCheckSquare}{Ethovision}
+	\skill{\faCheckSquare}{Any-Maze}
+	\skill{\faCheckSquare}{ABET II Touch}
+	
+	\vspace*{0.3cm}
+	\chartlabel{\faCar \hspace{0.1cm} Driver's license: B (2004)} 
+
+	\profilesection{Soft Skills}
+	%\chartlabel{Project Management}
+	\begin{figure}\centering
+		
+		\tikzset{
+			bubble node/.append style={
+				text width=1.65cm,
+				align=center}
+		}
+		
+		\smartdiagram[bubble diagram]{
+			\textcolor{white}{\textbf{Project}} \\
+			\textcolor{white}{\textbf{Management}}, % center bubble	
+			\textcolor{black!90}{Leadership},
+			\textcolor{black!90}{Risk Management},
+			\textcolor{black!90}{Problem Solving},
+			\textcolor{black!90}{Planning},
+			\textcolor{black!90}{Communication}
+		}
+	\end{figure}
+
+	%\chartlabel{Personality}
+\begin{figure}\centering
+	
+	\tikzset{
+		bubble node/.append style={
+			text width=1.65cm,
+			align=center}
+	}
+	
+	\smartdiagram[bubble diagram]{
+		\textcolor{white}{\textbf{Personal}} \\
+		\textcolor{white}{\textbf{Aspect}}, % center bubble	
+		\textcolor{black!90}{Explorative},
+		\textcolor{black!90}{Analytic Mind},
+		\textcolor{black!90}{Innovative},
+		\textcolor{black!90}{Critical Mind}
+	}
+\end{figure}
+
+
+
+}
+
+
+%-------------------------------------------------------------------------------
+%                         TABLE ENTRIES RIGHT COLUMN
+%-------------------------------------------------------------------------------
+\begin{document}
+
+\makefrontsidebar
+
+\cvsection{Working Experience}
+\begin{cvtable}[2]
+	\cvitem{currently}{Neuroscientist}{KU Leuven - Brain and Cognition}{Finalizing PhD dissertation: "Cognitive flexibility: The role of the orbitofrontal cortex and ventral hippocampus, and the effect of MK-801 and scopolamine". Lab of Prof. Dr. Rudi D'Hooge}
+	\cvitem{2008}{Lab technician}{University Ghent - Dep. of Virology}{Quantification of cellular immunological memory after measles vaccination through intracellular cytokine detection using flowcytometry. Lab of Prof. Dr. Geert Leroux-Roels.}
+\end{cvtable}
+
+\cvsubsection{Extra-curricular Working Experience}
+\begin{cvtable}[1.5]
+	\cvitem{07/2011}{Employee}{Federal Public Service - Ghent}{Special Tax Inspection.}
+	\cvitem{08/2009}{Employee}{Federal Public Service - Brussels}{Foreign Affairs.}
+	\cvitem{07/2009}{Employee}{Federal Public Service - Ghent}{Tax Inspection and Recovery.}
+	\cvitem{08/2008}{Lab technician}{Provincial Centre for Environmental Research - Ghent}{Quantitative determination of nitrogen contained in organic substances with the Kjeldahl method.}
+	\cvitem{08/2007}{Lab technician}{Provincial Centre for Environmental Research - Ghent}{Quantitative determination of nitrogen contained in organic substances with the Kjeldahl method.}
+	\cvitem{08-09/2006}{Food quality inspector}{La Lorraine NV Industrial Bakery - Ninove}{Quality and sustainability of bakery food products.}
+\end{cvtable}
+
+
+\cvsection{Education}
+\begin{cvtable}[1.5]
+	\cvitem{2008-2013}{Master of Science in Theoretical and Experimental Psychology}{Ghent University}
+		{Thesis: Jouw pijn is mijn pijn, maar... “Does it matter if you’re black or white?”.}
+	\cvitem{2005-2008}{Bachelor in Biomedic Laboratory Technology, Pharmaceutical and Biological Techniques}{University College - Ghent}
+		{Thesis: Quantification of cellular immunological memory after measles vaccination through intracellular cytokine detection.}
+\end{cvtable}
+
+\cvsection{Grants}
+\begin{cvtable}[1.5]
+	\cvitem{2014}{Doctoraatsbeurs Strategisch Basisonderzoek}{IWT/FWO}{}
+\end{cvtable}
+
+\cvsection{Conferences \& Presentations}
+\begin{cvtable}[1.5]
+	\cvitem{08/2017}{European Behavioural Pharmacology Society}{Heraklion - Greece}
+	{Perseverative behaviour in low-dose MK801-treated mice}
+	\cvitem{07/2017}{RIKEN Brain Science Institute}{Tokyo - Japan}
+	{Impaired reversal learning after NMDA-induced lesions in the PFC-HC network}
+	\cvitem{05/2017}{Belgian Society for Neuroscience}{Ghent}
+	{Effect of MK801 on learning and memory}
+	\cvitem{07/2016}{Federation of European Neurosciences Societies}{Copenhagen - Denmark}
+	{Cognitive flexibility: Modulation of prefrontal-hippocampal network}
+\end{cvtable}
+
+% Second page
+\newpage
+\makebacksidebar
+
+
+\cvsection{Certificates and Courses}
+\begin{cvtable}[1.5]
+	\cvitem{10/2019}{Matlab programming introduction}{VSC - KU Leuven}{}
+	\cvitem{10/2019}{Linux scripting}{VSC - KU Leuven}{}
+	\cvitem{12/2016}{Non-parametric statistics}{Leuven Statistics Research Centre}{}
+	\cvitem{07/2014}{FELASA C - Laboratory Animal Sciences}{Biomedical Sciences - KU Leuven}{}
+	\cvitem{03/2010}{Vaccinations in the 21\textsuperscript{st} century}{Ghent University}{}
+	\cvitem{02/2008}{The tumor micro-environment: new insights and therapeutic perspectives}{Ghent University}{}
+	\cvitem{03/2007}{Viral infections during pregnancy and in children. Disease and bio-safety in the lab}{Ghent University}{}
+	\cvitem{2007}{Kjeldahl method}{Ghent University}{}
+	\cvitem{2004}{Business Management}{OLVL Highschool}{}
+\end{cvtable}
+
+
+\cvsection{Publications}
+\begin{cvtable}
+	\cvpubitem{Differential effects of post-training scopolamine on spatial and non-spatial learning tasks in mice}{Thonnard, D., Callaerts-Vegh, Z., D.’Hooge, R.}{Brain Research Bulletin, 152, 52-62}{2019}
+	\cvpubitem{NMDA receptor dependence of reversal learning and the ﬂexible use of cognitively demanding search strategies in mice}{Thonnard, D., Dreesen, E., Callaerts-Vegh, Z., D’Hooge, R. }{Progress in Neuropsychopharmacology \& Biological Psychiatry, 90, 235-244}{2019}
+	\cvpubitem{Oorzaken en gevolgen van een verhoogd glucose metabolisme bij kanker}{Thonnard, D., Vermeulen, S.}{Tijdschrift van de Belgische Vereniging van Laboratorium Technologen, 38(1), 17-23}{2011}
+\end{cvtable}
+
+\cvsection{Extra-curricular Activities}
+	\center
+	\wheelchart{6em}{4em}{%
+	20/3em/maincolor!50/\textbf{PC},
+	20/3em/maincolor!15/\textbf{Books},
+	10/6em/maincolor!45/\textbf{Nature},
+	50/4em/maincolor!20/\textbf{Music},
+	15/3em/maincolor!60/\textbf{Travel},
+	5/3em/maincolor!25/\textbf{Sports}
+}
+
+\cvsignature
+
+\end{document} 
