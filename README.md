@@ -1,2 +1,4 @@
-# cv
-My resume
+## PC skill set
+* R
+* SAS
+
