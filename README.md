@@ -1,4 +1,4 @@
-## PC skill set and software packages
+## TODO...
 * OS: Linux (Mint, Ubuntu), Windows
 * R
 * LaTeX
@@ -8,13 +8,16 @@
 * SPSS
 * MATLAB
 * Graphpad Prism
-* Anaconda
+* Anacondaµ
+* VSCode
 * Spyder
 * C
 * Ethovision
 * Any-maze
 * Abet Touch II
-* Git: Github, Gitahead
+* Git
+* Github
+* Gitahead
 * MySQL, MySQL Workbench
 * Adobe Photohop
 * Adobe Illustrator
