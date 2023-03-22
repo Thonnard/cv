@@ -1,5 +1,5 @@
 ## TODO...
-* OS: Linux (Mint, Ubuntu), Windows
+* OS: Linux, Windows
 * R
 * LaTeX
 * SAS
@@ -8,7 +8,7 @@
 * SPSS
 * MATLAB
 * Graphpad Prism
-* Anacondaµ
+* Anaconda
 * VSCode
 * Spyder
 * C
